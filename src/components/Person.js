@@ -32,6 +32,15 @@ class Person extends Component {
                 state.person.work = 'programmer';
                 state.person.salary = 1200;
                 return state;
+            case 50:
+                state.person.work = 'Key consultant';
+                state.person.salary = 2200;
+                return state;
+            case 80:
+                state.person.work = 'retired';
+                state.person.salary = 0;
+                state.person.retirement = 0;
+                return state;
             default:
                 break;
         }
