@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import updateLive from './service';
 
 class Person extends Component {
     constructor(props) {
@@ -20,30 +21,11 @@ class Person extends Component {
             return state;
         }
         // Updates
-        switch (state.person.age) {
-            case 10:
-                state.person.idioms.push('spanish');
-                return state;
-            case 20:
-                state.person.work = 'becary';
-                state.person.salary = 500;
-                return state;
-            case 30:
-                state.person.work = 'programmer';
-                state.person.salary = 1200;
-                return state;
-            case 50:
-                state.person.work = 'Key consultant';
-                state.person.salary = 2200;
-                return state;
-            case 80:
-                state.person.work = 'retired';
-                state.person.salary = 0;
-                state.person.retirement = 0;
-                return state;
-            default:
-                break;
+        const updatedPerson = updateLive(state.person);
+        if (updatedPerson) {
+            return { ...state, person: updatedPerson }
         }
+
         return null;
     }
 
