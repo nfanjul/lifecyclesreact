@@ -1,7 +1,9 @@
-.Person {
-  padding: 20px 35px;
+.personInfo h2 {
+  color: rgb(31, 71, 88);
+  margin-bottom:10px
 }
 
-.Person h2 {
-  color: #2C5364;
+.personInfo {
+  padding: 10px 25px;
+  margin-bottom: 10px;
 }

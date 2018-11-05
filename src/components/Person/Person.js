@@ -1,7 +1,10 @@
 import React, { Component } from "react";
+import { traceLifecycle } from "react-lifecycle-visualizer";
 
+import updateLive from "./service";
+import Picture from "../../containers/Picture/Picture";
+import Person0 from "../../images/0.png";
 import "./Person.css";
-import Person20 from "../../images/20.png";
 
 class Person extends Component {
   constructor(props) {
@@ -17,42 +20,22 @@ class Person extends Component {
 
   static getDerivedStateFromProps = (props, state) => {
     // First mount
-    if (props.person.eyeColor !== "Green") {
-      props.person.eyeColor = "Green";
+    if (props.person.eyeColor !== "green") {
+      props.person.eyeColor = "green";
       state = props;
       return state;
     }
     // Updates
-    switch (state.person.age) {
-      case 10:
-        state.person.languages.push("Spanish");
-        return state;
-      case 20:
-        state.person.work = "Becary";
-        state.person.salary = 500;
-        state.person.languages.push("English");
-        state.person.picture = Person20;
-        return state;
-      case 30:
-        state.person.work = "Programmer";
-        state.person.salary = 1200;
-        return state;
-      case 50:
-        state.person.work = "Programmer";
-        state.person.salary = 2100;
-        return state;
-      case 80:
-        state.person.work = "Retired";
-        state.person.salary = 0;
-        return state;
-      default:
-        break;
+    const updatedPerson = updateLive(state.person);
+    if (updatedPerson) {
+      return { ...state, person: updatedPerson };
     }
+
     return null;
   };
 
   componentDidMount = () => {
-    //this.props.getSomeInfo();
+    // TODO
   };
 
   getSnapshotBeforeUpdate = (prevProps, prevstate) => {
@@ -62,40 +45,39 @@ class Person extends Component {
   };
 
   componentDidUpdate(prevProps, prevstate, snapshot) {
+    console.log("Salary diference", snapshot.salaryDiference);
     this.salaryDiference = snapshot.salaryDiference;
   }
 
-  increaseAge = () => {
+  increaseAge = () =>
     this.setState({
       person: { ...this.state.person, age: this.state.person.age + 10 }
     });
-    this.setPicture();
-  };
-
-  setPicture = () => {
-    console.log('!!!')
-    this.setState({ picture: this.state.person.picture });
-  };
 
   renderLanguages = () =>
-    this.state.person.languages.map(language => {
-      return <div key={language}> {language} </div>;
+    this.state.person.languages.map(lang => {
+      return <div key={lang}> {lang} </div>;
     });
 
   render() {
     return (
       <div className="Person">
-        <h2> {this.state.person.name} </h2>
-        <b>Eye color:</b> {this.state.person.eyeColor} <br />
-        <b>Age:</b> {this.state.person.age}{" "}
-        <button onClick={this.increaseAge}> + </button> <br />
-        <b>Languages:</b> {this.renderLanguages()} <br />
-        <b>Work:</b> {this.state.person.work} <br />
-        <b>Salari:</b> {this.state.person.salary} <br />
-        <b>Salary diference:</b> {this.salaryDiference}
+        <Picture picture={Person0} />
+        <div className="personInfo">
+          <h2> {this.state.person.name} </h2>
+          <b>Eye color:</b> {this.state.person.eyeColor} <br />
+          <b>Age:</b> {this.state.person.age}{" "}
+          <button onClick={this.increaseAge}> + </button> <br />
+          <b>Languages:</b> {this.renderLanguages()} <br />
+          <b>Work:</b> {this.state.person.work} <br />
+          <b>Salari:</b> {this.state.person.salary} <br />
+          <b>Salary diference:</b> {this.salaryDiference}
+        </div>
       </div>
     );
   }
 }
 
-export default Person;
+export default traceLifecycle(Person);
+
+//https://github.com/Oblosys/react-lifecycle-visualizer#readme
