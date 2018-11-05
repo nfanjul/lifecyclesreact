@@ -1,0 +1,14 @@
+.Picture {
+  display: flex;
+  align-items: center;
+  width: 260px;
+  height: 380px;
+  border: 20px solid #fff;
+  background-color: #2C5364;
+  box-shadow: 3px 0px 20px 0 rgba(0, 0, 0, 0.35);
+  margin: -10px;
+}
+
+.Picture img {
+  margin: auto;
+}
