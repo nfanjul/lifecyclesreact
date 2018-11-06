@@ -12,6 +12,7 @@ class World extends Component {
       person: {
         name: "",
         eyeColor: "",
+        hairColor: "",
         age: 0,
         languages: [],
         work: "",

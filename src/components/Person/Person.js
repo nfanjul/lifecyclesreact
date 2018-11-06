@@ -66,6 +66,7 @@ class Person extends Component {
         <div className="personInfo">
           <h2> {this.state.person.name} </h2>
           <b>Eye color:</b> {this.state.person.eyeColor} <br />
+          <b>Hair color:</b> {this.state.person.hairColor} <br />
           <b>Age:</b> {this.state.person.age}{" "}
           <button onClick={this.increaseAge}> + </button> <br />
           <b>Languages:</b> {this.renderLanguages()} <br />
