@@ -23,6 +23,7 @@ class World extends Component {
 
   componentDidMount = () => {
     const data = defaultData;
+    this.props.trace('componentDidMount: ' + JSON.stringify(data));
     if (data) {
       this.setState({ person: data });
     }
