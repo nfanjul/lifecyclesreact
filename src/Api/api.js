@@ -1,12 +1,14 @@
-const defaultData = {
-    'name': 'Marce',
-    'eyeColor': 'brown',
-    'hairColor': 'Black',
-    'age': 0,
-    'languages': [],
-    'work': 'student',
-    'salary': 0
-  };
+import Person0 from "../images/0.png";
 
-  export default defaultData;
-  
+const defaultData = {
+  'name': 'Marce',
+  'eyeColor': 'brown',
+  'hairColor': 'Black',
+  'age': 0,
+  'languages': [],
+  'work': 'student',
+  'salary': 0,
+  'picture': Person0,
+};
+
+export default defaultData;

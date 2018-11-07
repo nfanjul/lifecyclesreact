@@ -3,7 +3,6 @@ import { traceLifecycle } from "react-lifecycle-visualizer";
 
 import updateLive from "./service";
 import Picture from "../../containers/Picture/Picture";
-import Person0 from "../../images/0.png";
 import "./Person.css";
 
 class Person extends Component {
@@ -34,10 +33,6 @@ class Person extends Component {
     return null;
   };
 
-  componentDidMount = () => {
-    // TODO
-  };
-
   getSnapshotBeforeUpdate = (prevProps, prevstate) => {
     return {
       salaryDiference: this.state.person.salary - prevstate.person.salary
@@ -62,7 +57,7 @@ class Person extends Component {
   render() {
     return (
       <div className="Person">
-        <Picture picture={Person0} />
+        <Picture picture={this.state.person.picture} />
         <div className="personInfo">
           <h2> {this.state.person.name} </h2>
           <b>Eye color:</b> {this.state.person.eyeColor} <br />
