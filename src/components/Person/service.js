@@ -9,18 +9,18 @@ const updateLive = (person) => {
     {
         switch (person.age) {
             case 10:
-                person.languages.push('spanish');
+                person.languages.push('Spanish');
                 person.picture = Person10;
                 return person;
             case 20:
-                person.work = 'becary';
+                person.work = 'Becary';
                 person.hairColor= 'Red';
                 person.salary = 500;
                 person.picture = Person20;
                 return person;
             case 30:
-                person.languages.push('english');
-                person.work = 'programmer';
+                person.languages.push('English');
+                person.work = 'Programmer';
                 person.hairColor= 'Blue';
                 person.salary = 1200;
                 person.picture = Person30;
@@ -32,7 +32,7 @@ const updateLive = (person) => {
                 person.picture = Person50;
                 return person;
             case 80:
-                person.work = 'retired';
+                person.work = 'Retired';
                 person.hairColor= 'White';
                 person.salary = 0;
                 person.retirement = 0;

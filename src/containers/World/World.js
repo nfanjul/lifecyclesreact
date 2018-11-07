@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { traceLifecycle } from "react-lifecycle-visualizer";
 import defaultData from "../../Api/api";
 import Person from "../../components/Person/Person";
+import Home from "../../components/Home/Home";
 
 import "./World.css";
 
@@ -9,6 +10,7 @@ class World extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isHome: true,
       person: {
         name: "",
         eyeColor: "",
@@ -29,11 +31,14 @@ class World extends Component {
       this.setState({ person: data });
     }
   };
+  
+  onClickIsHome = () =>  this.setState({ isHome: !this.state.isHome});
 
   render() {
     return (
       <div className="World">
-        <Person person={this.state.person} />
+        <button onClick={this.onClickIsHome}> {this.state.isHome ? 'Enter god mode' : 'Kill this person'} </button>
+        {this.state.isHome ? <Home /> : <Person person={this.state.person} />}
       </div>
     );
   }

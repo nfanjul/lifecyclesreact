@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { traceLifecycle } from "react-lifecycle-visualizer";
 
 import updateLive from "./service";
-import Picture from "../../containers/Picture/Picture";
+import Picture from "../Picture/Picture";
 import "./Person.css";
 
 class Person extends Component {
@@ -29,8 +29,8 @@ class Person extends Component {
     if (updatedPerson) {
       return { ...state, person: updatedPerson };
     }
-
-    return null;
+    state = props;
+    return state;
   };
 
   getSnapshotBeforeUpdate = (prevProps, prevstate) => {
@@ -44,15 +44,18 @@ class Person extends Component {
     this.salaryDiference = snapshot.salaryDiference;
   }
 
-  increaseAge = () =>
-    this.setState({
-      person: { ...this.state.person, age: this.state.person.age + 10 }
-    });
+  increaseAge = () => {
+    if (this.state.person.age < 100) {
+      this.setState({
+        person: { ...this.state.person, age: this.state.person.age + 10 }
+      });
+    }
+  }
 
-  renderLanguages = () =>
-    this.state.person.languages.map(lang => {
-      return <div key={lang}> {lang} </div>;
-    });
+  // renderLanguages = () =>
+  //   this.state.person.languages.map(lang => {
+  //     return <div key={lang}> {lang.join()} </div>;
+  //   });
 
   render() {
     return (
@@ -64,7 +67,7 @@ class Person extends Component {
           <b>Hair color:</b> {this.state.person.hairColor} <br />
           <b>Age:</b> {this.state.person.age}{" "}
           <button onClick={this.increaseAge}> + </button> <br />
-          <b>Languages:</b> {this.renderLanguages()} <br />
+          <b>Languages:</b> {this.state.person.languages.join(', ')} <br />
           <b>Work:</b> {this.state.person.work} <br />
           <b>Salari:</b> {this.state.person.salary} <br />
           <b>Salary diference:</b> {this.salaryDiference}

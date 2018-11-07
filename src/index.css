@@ -24,4 +24,9 @@ code {
 
 .log {
   margin: 1.5em;
+  max-height: 585px;
+}
+
+.entries {
+  width: 415px
 }
