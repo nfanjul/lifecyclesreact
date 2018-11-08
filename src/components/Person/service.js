@@ -33,6 +33,7 @@ export const updateLive = (age, person) => {
                 person.picture = Person20;
                 return person;
             case 30:
+                debugger
                 person.age = 30;
                 person.languages.push('English');
                 person.work = 'Programmer';
@@ -56,6 +57,7 @@ export const updateLive = (age, person) => {
                 person.picture = Person80;
                 return person;
             default:
+                //    return initPerson;
                 break;
         }
     }

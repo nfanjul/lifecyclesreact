@@ -20,7 +20,6 @@ class Person extends Component {
     //   return state;
     // }
     // Updates
-    debugger;
     nextProps.trace('getDerivedStateFromProps next -->' + JSON.stringify(nextProps));
     nextProps.trace('getDerivedStateFromProps prev -->' + JSON.stringify(prevState));
     // Validete if != prev to next
@@ -35,8 +34,10 @@ class Person extends Component {
   };
 
   componentDidMount = () => {
-    const data = defaultData;
+    //  For avoid mutations
+    const data = Object.assign({}, defaultData);
     this.props.trace('componentDidMount: ' + JSON.stringify(data));
+    console.log(' API ', data);
     if (data) {
       this.setState({ person: data });
     }
@@ -63,7 +64,8 @@ class Person extends Component {
   }
 
   componentWillUnmount = () => {
-    this.props.trace('componentWillUnmount');
+    // this.props.trace('componentWillUnmount');
+    this.props.onClickResetAge();
     this.setState(initPerson);
   }
 
@@ -81,6 +83,8 @@ class Person extends Component {
   // }
 
   render() {
+    console.log('RENDER', this.state.person);
+
     return (
       <div className="Person">
         <Picture picture={this.state.person.picture} alt="person" />

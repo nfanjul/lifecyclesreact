@@ -24,9 +24,11 @@ class Home extends Component {
     }
   };
 
+  onClickResetAge = () => this.setState({ personAge: 0 });
+
   renderPerson = () => 
     <React.Fragment>
-      <Person personAge={this.state.personAge} />
+      <Person personAge={this.state.personAge}  onClickResetAge={this.onClickResetAge}/>
       <button onClick={this.onClickIncreaseAge}> + </button> <br />
     </React.Fragment>
   
