@@ -88,7 +88,7 @@ class Person extends Component {
           <h2> {this.state.person.name} </h2>
           <b>Eye color:</b> {this.state.person.eyeColor} <br />
           <b>Hair color:</b> {this.state.person.hairColor} <br />
-          <b>Age:</b> {this.state.person.age}{' '}
+          <b>Age:</b> {this.state.person.age}{' '} <br />
           <b>Languages:</b> {this.state.person.languages.join(', ')} <br />
           <b>Work:</b> {this.state.person.work} <br />
           <b>Salari:</b> {this.state.person.salary} <br />
