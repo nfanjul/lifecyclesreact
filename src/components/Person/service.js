@@ -4,9 +4,8 @@ import Person30 from "../../images/30.png";
 import Person50 from "../../images/50.png";
 import Person80 from "../../images/80.png";
 
-const updateLive = (person) => {
-    if(person !== undefined)
-    {
+export const updateLive = (person) => {
+    if (person !== undefined) {
         switch (person.age) {
             case 10:
                 person.languages.push('Spanish');
@@ -14,26 +13,26 @@ const updateLive = (person) => {
                 return person;
             case 20:
                 person.work = 'Becary';
-                person.hairColor= 'Red';
+                person.hairColor = 'Red';
                 person.salary = 500;
                 person.picture = Person20;
                 return person;
             case 30:
                 person.languages.push('English');
                 person.work = 'Programmer';
-                person.hairColor= 'Blue';
+                person.hairColor = 'Blue';
                 person.salary = 1200;
                 person.picture = Person30;
                 return person;
             case 50:
                 person.work = 'Key consultant';
-                person.hairColor= 'Black';
+                person.hairColor = 'Black';
                 person.salary = 2200;
                 person.picture = Person50;
                 return person;
             case 80:
                 person.work = 'Retired';
-                person.hairColor= 'White';
+                person.hairColor = 'White';
                 person.salary = 0;
                 person.retirement = 0;
                 person.picture = Person80;
@@ -45,4 +44,15 @@ const updateLive = (person) => {
     return null;
 }
 
-export default updateLive;
+export const initPerson = {
+    person: {
+        name: "",
+        eyeColor: "",
+        hairColor: "",
+        age: 0,
+        languages: [],
+        work: "",
+        salary: 0,
+        picture: ""
+    }
+}

@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import { traceLifecycle } from "react-lifecycle-visualizer";
 
-import updateLive from "./service";
+import defaultData from "../../Api/api";
+import { updateLive, initPerson } from "./service";
 import Picture from "../Picture/Picture";
 import "./Person.css";
 
 class Person extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
-    this.salaryDiference = 0;
+    this.state = initPerson;
   }
 
   shouldComponentUpdate = () => {
@@ -17,13 +17,25 @@ class Person extends Component {
     return true;
   };
 
+  componentWillUnmount = () => {
+    this.props.trace('componentWillUnmount' + JSON.stringify(this.state));
+  }
+
+  componentDidMount = () => {
+    const data = defaultData;
+    this.props.trace('componentDidMount: ' + JSON.stringify(data));
+    if (data) {
+      this.setState({ person: data });
+    }
+  };
+
   static getDerivedStateFromProps = (props, state) => {
     // First mount
-    if (props.person.eyeColor !== "green") {
-      props.person.eyeColor = "green";
-      state = props;
-      return state;
-    }
+    // if (props.person.eyeColor !== "green") {
+    //   props.person.eyeColor = "green";
+    //   state = props;
+    //   return state;
+    // }
     // Updates
     const updatedPerson = updateLive(state.person);
     if (updatedPerson) {
@@ -60,7 +72,7 @@ class Person extends Component {
   render() {
     return (
       <div className="Person">
-        <Picture picture={this.state.person.picture} />
+        <Picture picture={this.state.person.picture} alt="person" />
         <div className="personInfo">
           <h2> {this.state.person.name} </h2>
           <b>Eye color:</b> {this.state.person.eyeColor} <br />
