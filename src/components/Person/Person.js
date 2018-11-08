@@ -25,7 +25,7 @@ class Person extends Component {
     // Validete if != prev to next
       const updatedPerson = updateLive(nextProps.personAge, prevState.person);
       if (updatedPerson) {
-        return { ...prevState, person: updatedPerson };
+        return { person: updatedPerson };
       }
       // prevState = nextProps;
       // return prevState;
@@ -53,7 +53,8 @@ class Person extends Component {
     // return null;
     // if (prevstate.languages.length < this.props.languages.length) {
     //   // TODO: Add prevstate
-    // } 
+    // }
+    debugger;
     return {
       salaryDiference: this.state.person.salary - prevstate.person.salary
     };
