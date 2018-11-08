@@ -17,20 +17,23 @@ export const initPerson = {
     }
 }
 
-export const updateLive = (person) => {
+export const updateLive = (age, person) => {
     if (person !== undefined) {
-        switch (person.age) {
+        switch (age) {
             case 10:
+                person.age = 10;
                 person.languages.push('Spanish');
                 person.picture = Person10;
                 return person;
             case 20:
+                person.age = 20;
                 person.work = 'Becary';
                 person.hairColor = 'Red';
                 person.salary = 500;
                 person.picture = Person20;
                 return person;
             case 30:
+                person.age = 30;
                 person.languages.push('English');
                 person.work = 'Programmer';
                 person.hairColor = 'Blue';
@@ -38,12 +41,14 @@ export const updateLive = (person) => {
                 person.picture = Person30;
                 return person;
             case 50:
+                person.age = 50;
                 person.work = 'Key consultant';
                 person.hairColor = 'Black';
                 person.salary = 2200;
                 person.picture = Person50;
                 return person;
             case 80:
+                person.age = 80;
                 person.work = 'Retired';
                 person.hairColor = 'White';
                 person.salary = 0;

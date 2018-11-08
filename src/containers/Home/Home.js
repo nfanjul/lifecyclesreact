@@ -10,18 +10,32 @@ class Home extends Component {
     super(props);
     this.state = {
       isHome: true,
+      personAge: 0,
     }
     props.trace('constructor --> props ' + JSON.stringify(props));
     props.trace('constructor --> state ' + JSON.stringify(this.state));
   }
+
+  onClickIsHome = () => this.setState({ isHome: !this.state.isHome });
+
+  onClickIncreaseAge = () => {
+    if (this.state.personAge < 100) {
+      this.setState({ personAge: this.state.personAge + 10 });
+    }
+  };
+
+  renderPerson = () => 
+    <React.Fragment>
+      <Person personAge={this.state.personAge} />
+      <button onClick={this.onClickIncreaseAge}> + </button> <br />
+    </React.Fragment>
   
-  onClickIsHome = () =>  this.setState({ isHome: !this.state.isHome});
 
   render() {
     return (
       <div className="Home">
         <button onClick={this.onClickIsHome}> {this.state.isHome ? 'Enter god mode' : 'Kill this person'} </button>
-        {this.state.isHome ? <World /> : <Person />}
+        {this.state.isHome ? <World /> : this.renderPerson() }
       </div>
     );
   }

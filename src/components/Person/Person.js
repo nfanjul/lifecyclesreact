@@ -24,7 +24,7 @@ class Person extends Component {
     nextProps.trace('getDerivedStateFromProps next -->' + JSON.stringify(nextProps));
     nextProps.trace('getDerivedStateFromProps prev -->' + JSON.stringify(prevState));
     // Validete if != prev to next
-      const updatedPerson = updateLive(prevState.person);
+      const updatedPerson = updateLive(nextProps.personAge, prevState.person);
       if (updatedPerson) {
         return { ...prevState, person: updatedPerson };
       }
@@ -72,13 +72,13 @@ class Person extends Component {
   //     return <div key={lang}> {lang.join()} </div>;
   //   });
 
-  increaseAge = () => {
-    if (this.state.person.age < 100) {
-      this.setState({
-        person: { ...this.state.person, age: this.state.person.age + 10 }
-      });
-    }
-  }
+  // increaseAge = () => {
+  //   if (this.state.person.age < 100) {
+  //     this.setState({
+  //       person: { ...this.state.person, age: this.state.person.age + 10 }
+  //     });
+  //   }
+  // }
 
   render() {
     return (
@@ -89,7 +89,6 @@ class Person extends Component {
           <b>Eye color:</b> {this.state.person.eyeColor} <br />
           <b>Hair color:</b> {this.state.person.hairColor} <br />
           <b>Age:</b> {this.state.person.age}{' '}
-          <button onClick={this.increaseAge}> + </button> <br />
           <b>Languages:</b> {this.state.person.languages.join(', ')} <br />
           <b>Work:</b> {this.state.person.work} <br />
           <b>Salari:</b> {this.state.person.salary} <br />
