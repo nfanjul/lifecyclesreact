@@ -1,4 +1,4 @@
-import Person0 from "../images/0.png";
+import Person0 from '../images/0.png';
 
 const defaultData = {
   'name': 'Marce',

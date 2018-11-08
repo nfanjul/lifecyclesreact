@@ -1,8 +1,21 @@
-import Person10 from "../../images/10.png";
-import Person20 from "../../images/20.png";
-import Person30 from "../../images/30.png";
-import Person50 from "../../images/50.png";
-import Person80 from "../../images/80.png";
+import Person10 from '../../images/10.png';
+import Person20 from '../../images/20.png';
+import Person30 from '../../images/30.png';
+import Person50 from '../../images/50.png';
+import Person80 from '../../images/80.png';
+
+export const initPerson = {
+    person: {
+        name: '',
+        eyeColor: '',
+        hairColor: '',
+        age: 0,
+        languages: [],
+        work: '',
+        salary: 0,
+        picture: '',
+    }
+}
 
 export const updateLive = (person) => {
     if (person !== undefined) {
@@ -42,17 +55,4 @@ export const updateLive = (person) => {
         }
     }
     return null;
-}
-
-export const initPerson = {
-    person: {
-        name: "",
-        eyeColor: "",
-        hairColor: "",
-        age: 0,
-        languages: [],
-        work: "",
-        salary: 0,
-        picture: ""
-    }
 }

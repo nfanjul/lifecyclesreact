@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { traceLifecycle } from "react-lifecycle-visualizer";
+import React, { Component } from 'react';
+import { traceLifecycle } from 'react-lifecycle-visualizer';
 
-import defaultData from "../../Api/api";
-import { updateLive, initPerson } from "./service";
-import Picture from "../Picture/Picture";
-import "./Person.css";
+import defaultData from '../../Api/api';
+import { updateLive, initPerson } from './service';
+import Picture from '../Picture/Picture';
+import './Person.css';
 
 class Person extends Component {
   constructor(props) {
@@ -12,14 +12,27 @@ class Person extends Component {
     this.state = initPerson;
   }
 
-  shouldComponentUpdate = () => {
-    // do some stuffs
-    return true;
+  static getDerivedStateFromProps = (nextProps, prevState) => {
+    // First mount
+    // if (props.person.eyeColor !== 'green') {
+    //   props.person.eyeColor = 'green';
+    //   state = props;
+    //   return state;
+    // }
+    // Updates
+    debugger;
+    nextProps.trace('getDerivedStateFromProps next -->' + JSON.stringify(nextProps));
+    nextProps.trace('getDerivedStateFromProps prev -->' + JSON.stringify(prevState));
+    // Validete if != prev to next
+      const updatedPerson = updateLive(prevState.person);
+      if (updatedPerson) {
+        return { ...prevState, person: updatedPerson };
+      }
+      // prevState = nextProps;
+      // return prevState;
+      return null;
+    //Posible return null if not changes
   };
-
-  componentWillUnmount = () => {
-    this.props.trace('componentWillUnmount' + JSON.stringify(this.state));
-  }
 
   componentDidMount = () => {
     const data = defaultData;
@@ -29,32 +42,35 @@ class Person extends Component {
     }
   };
 
-  static getDerivedStateFromProps = (props, state) => {
-    // First mount
-    // if (props.person.eyeColor !== "green") {
-    //   props.person.eyeColor = "green";
-    //   state = props;
-    //   return state;
-    // }
-    // Updates
-    const updatedPerson = updateLive(state.person);
-    if (updatedPerson) {
-      return { ...state, person: updatedPerson };
-    }
-    state = props;
-    return state;
-  };
-
   getSnapshotBeforeUpdate = (prevProps, prevstate) => {
+    // Are we adding new items to the list?
+    // Capture the scroll position so we can adjust prevstate later.
+    // if (prevProps.list.length < this.props.list.length) {
+    //   const list = this.listRef.current;
+    //   return list.scrollHeight - list.scrollTop;
+    // }
+    // return null;
+    // if (prevstate.languages.length < this.props.languages.length) {
+    //   // TODO: Add prevstate
+    // } 
     return {
       salaryDiference: this.state.person.salary - prevstate.person.salary
     };
   };
 
   componentDidUpdate(prevProps, prevstate, snapshot) {
-    console.log("Salary diference", snapshot.salaryDiference);
     this.salaryDiference = snapshot.salaryDiference;
   }
+
+  componentWillUnmount = () => {
+    this.props.trace('componentWillUnmount');
+    this.setState(initPerson);
+  }
+
+  // renderLanguages = () =>
+  //   this.state.person.languages.map(lang => {
+  //     return <div key={lang}> {lang.join()} </div>;
+  //   });
 
   increaseAge = () => {
     if (this.state.person.age < 100) {
@@ -64,11 +80,6 @@ class Person extends Component {
     }
   }
 
-  // renderLanguages = () =>
-  //   this.state.person.languages.map(lang => {
-  //     return <div key={lang}> {lang.join()} </div>;
-  //   });
-
   render() {
     return (
       <div className="Person">
@@ -77,7 +88,7 @@ class Person extends Component {
           <h2> {this.state.person.name} </h2>
           <b>Eye color:</b> {this.state.person.eyeColor} <br />
           <b>Hair color:</b> {this.state.person.hairColor} <br />
-          <b>Age:</b> {this.state.person.age}{" "}
+          <b>Age:</b> {this.state.person.age}{' '}
           <button onClick={this.increaseAge}> + </button> <br />
           <b>Languages:</b> {this.state.person.languages.join(', ')} <br />
           <b>Work:</b> {this.state.person.work} <br />

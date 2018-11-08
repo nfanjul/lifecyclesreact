@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { traceLifecycle } from "react-lifecycle-visualizer";
-import Person from "../../components/Person/Person";
-import World from "../../components/World/World";
+import React, { Component } from 'react';
+import { traceLifecycle } from 'react-lifecycle-visualizer';
+import Person from '../../components/Person/Person';
+import World from '../../components/World/World';
 
-import "./Home.css";
+import './Home.css';
 
 class Home extends Component {
   constructor(props) {
