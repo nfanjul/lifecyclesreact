@@ -4,7 +4,7 @@ import { traceLifecycle } from 'react-lifecycle-visualizer';
 import defaultData from '../../Api/api';
 import { updateLive, initPerson } from './service';
 import Picture from '../Picture/Picture';
-import moneyImage from '../../images/money.jpg';
+import moneyImage from '../../images/money.png';
 import './Person.css';
 
 class Person extends Component {
@@ -55,7 +55,6 @@ class Person extends Component {
     // if (prevstate.languages.length < this.props.languages.length) {
     //   // TODO: Add prevstate
     // }
-    debugger;
     return {
       salaryDiference: this.state.person.salary - prevstate.person.salary
     };
