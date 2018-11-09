@@ -12,7 +12,7 @@ class World extends Component {
   render() {
     return (
       <div className="Home">
-        <Picture picture={worldImage} alt="world" />
+        <Picture picture={worldImage} alt="world" css={'Picture'} />
       </div>
     );
   }

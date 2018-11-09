@@ -4,6 +4,7 @@ import { traceLifecycle } from 'react-lifecycle-visualizer';
 import defaultData from '../../Api/api';
 import { updateLive, initPerson } from './service';
 import Picture from '../Picture/Picture';
+import moneyImage from '../../images/money.jpg';
 import './Person.css';
 
 class Person extends Component {
@@ -23,13 +24,13 @@ class Person extends Component {
     nextProps.trace('getDerivedStateFromProps next -->' + JSON.stringify(nextProps));
     nextProps.trace('getDerivedStateFromProps prev -->' + JSON.stringify(prevState));
     // Validete if != prev to next
-      const updatedPerson = updateLive(nextProps.personAge, prevState.person);
-      if (updatedPerson) {
-        return { person: updatedPerson };
-      }
-      // prevState = nextProps;
-      // return prevState;
-      return null;
+    const updatedPerson = updateLive(nextProps.personAge, prevState.person);
+    if (updatedPerson) {
+      return { person: updatedPerson };
+    }
+    // prevState = nextProps;
+    // return prevState;
+    return null;
     //Posible return null if not changes
   };
 
@@ -61,7 +62,13 @@ class Person extends Component {
   };
 
   componentDidUpdate(prevProps, prevstate, snapshot) {
-    this.salaryDiference = snapshot.salaryDiference;
+    const moneyImage = document.getElementById('money');
+    console.log('moneyImage', moneyImage.style.height);
+    if (moneyImage && snapshot.salaryDiference > 0) {
+      moneyImage.width = moneyImage.width + 10;
+    }
+
+    // this.salaryDiference = snapshot.salaryDiference;
   }
 
   componentWillUnmount = () => {
@@ -88,7 +95,7 @@ class Person extends Component {
 
     return (
       <div className="Person">
-        <Picture picture={this.state.person.picture} alt="person" />
+        <Picture picture={this.state.person.picture} alt="person" css={'Picture'} />
         <div className="personInfo">
           <h2> {this.state.person.name} </h2>
           <b>Eye color:</b> {this.state.person.eyeColor} <br />
@@ -98,6 +105,7 @@ class Person extends Component {
           <b>Work:</b> {this.state.person.work} <br />
           <b>Salari:</b> {this.state.person.salary} <br />
           <b>Salary diference:</b> {this.salaryDiference}
+          <Picture picture={moneyImage} alt="money" width={60} imgCss={'MoneyImage'} />
         </div>
       </div>
     );
