@@ -62,7 +62,6 @@ class Person extends Component {
 
   componentDidUpdate(prevProps, prevstate, snapshot) {
     const moneyImage = document.getElementById('money');
-    console.log('moneyImage', moneyImage.style.height);
     if (moneyImage && snapshot.salaryDiference > 0) {
       moneyImage.width = moneyImage.width + 10;
     }
@@ -71,7 +70,7 @@ class Person extends Component {
   }
 
   componentWillUnmount = () => {
-    // this.props.trace('componentWillUnmount');
+    this.props.trace('componentWillUnmount');
     this.props.onClickResetAge();
     this.setState(initPerson);
   }

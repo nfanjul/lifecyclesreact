@@ -22,12 +22,13 @@ class Slide extends Component {
         // IMPORTANTE: Si cambiamos el estado, se vuelve a renderizar el componente
     }
 
-    componentDidUpdate(prevProps, prevstate, snapshot) {
+    componentDidUpdate(prevProps, prevState, snapshot) {
         // El componente ya esta en el DOM
         // Ya podemos interactuar con el DOM
 
         // this.props, this.state ya están actualizados
-        // Tenemos acceso a las props y al estado antes de la actualización
+        // Tenemos acceso a las props y al estado de antes de la actualización
+        // Tambien tenemos acceso al objeto resultante del ciclo de vida anterior
 
         // Funciona muy parecido a componentDidMount()
     }
@@ -45,7 +46,7 @@ class Slide extends Component {
 
     componentWillUnmount() {
         // Se ejecuta justo ANTES de que se desmonte del DOM
-        // Perfecto para hacer reset y llimpiar nuestro componente
+        // Perfecto para hacer reset y limpiar nuestro componente
         // Desuscribirse de eventos o cancelar peticiones HTTP pendientes
 
         // Evita errores y sobrecargas de memória innecesaria
