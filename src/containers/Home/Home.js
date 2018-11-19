@@ -19,8 +19,12 @@ class Home extends Component {
   onClickIsHome = () => this.setState({ isHome: !this.state.isHome });
 
   onClickIncreaseAge = () => {
-    if (this.state.personAge < 100) {
+    if (this.state.personAge < 30) {
       this.setState({ personAge: this.state.personAge + 10 });
+    } else if (this.state.personAge === 30) {
+      this.setState({ personAge: this.state.personAge + 20 });
+    } else if (this.state.personAge === 50) {
+      this.setState({ personAge: this.state.personAge + 30 });
     }
   };
 
