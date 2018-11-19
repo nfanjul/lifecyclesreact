@@ -62,11 +62,14 @@ class Person extends Component {
 
   componentDidUpdate(prevProps, prevstate, snapshot) {
     const moneyImage = document.querySelector('.MoneyImage');
-    console.log('person', this.props)
+    let imageWidth = moneyImage.offsetWidth;
+    console.log('salaryDiference', snapshot.salaryDiference)
     if (moneyImage && snapshot.salaryDiference > 0) {
-      let imageWidth = moneyImage.offsetWidth;
       imageWidth = imageWidth + 23;
       moneyImage.style.width = `${imageWidth}px`;
+    }
+    if (moneyImage && snapshot.salaryDiference < 0) {
+      moneyImage.style.width = "0px";
     }
 
     // this.salaryDiference = snapshot.salaryDiference;
