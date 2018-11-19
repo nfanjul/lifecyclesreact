@@ -10,14 +10,16 @@
 }
 
 .Picture img {
-  margin: auto;
+  margin: 35px auto 0;
+  max-height: 335px;
 }
 
-
-/* .MoneyImage {
-  width: 60px;
+.MoneyImage {
+  background-image: url('../../images/money.png');
+  display: inline-block;
+  height: 20px;
 }
 
-.Money img {
-  margin: auto;
-} */
+.MoneyImage img {
+  display: none;
+}

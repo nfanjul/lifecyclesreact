@@ -29,14 +29,14 @@ class Home extends Component {
   renderPerson = () => 
     <React.Fragment>
       <Person personAge={this.state.personAge}  onClickResetAge={this.onClickResetAge}/>
-      <button onClick={this.onClickIncreaseAge}> + </button> <br />
+      <button className='plus' onClick={this.onClickIncreaseAge}> + </button> <br />
     </React.Fragment>
   
 
   render() {
     return (
       <div className="Home">
-        <button onClick={this.onClickIsHome}> {this.state.isHome ? 'Enter god mode' : 'Kill this person'} </button>
+        <button className='home-button' onClick={this.onClickIsHome}> {this.state.isHome ? 'Enter god mode' : 'Kill this person'} </button>
         {this.state.isHome ? <World /> : this.renderPerson() }
       </div>
     );

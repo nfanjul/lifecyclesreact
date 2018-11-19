@@ -18,8 +18,9 @@ code {
   box-shadow: 2px 0px 10px 0 rgba(0, 0, 0, 0.15);
   width: 100%;
   max-width: 750px;
-  margin: 5% auto;
+  margin: 3.5% auto;
   display: flex;
+  max-height: 85vh;
 }
 
 .log {
@@ -27,6 +28,20 @@ code {
   max-height: 585px;
 }
 
+.log .simple-button {
+  padding: 6px 12px;
+  margin: 5px;
+  border: 2px solid;
+  border: 2px solid #2C5364;
+  background-color: #d1d1d1;
+  color: #2C5364;
+  border-radius: 0%;
+  font-size: 0.9em;
+}
+
 .entries {
   width: 415px
 }
+
+/* font-family: 'Lekton', sans-serif;
+font-family: 'Montserrat', sans-serif; */

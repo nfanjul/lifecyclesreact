@@ -6,3 +6,28 @@
   margin: 5% auto;
   display: flex;
 } */
+
+.Home {
+  max-height: 725px;
+  position: relative;
+}
+.Home button {
+  position: absolute;
+  border: 3px solid #2C5364;
+  background-color: #d1d1d1;
+  color: #2C5364;
+  top: 10px;
+  left: 0px;
+  padding: 6px 15px;
+  font-size: 1.2em;
+  font-size: 1.45em;
+}
+
+.Home .plus {
+  top: 367px;
+  left: auto;
+  right: 4px;
+  padding: 4px 10px 2px;
+  font-size: 1.45em;
+  font-weight: bold;
+}

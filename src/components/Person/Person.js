@@ -38,7 +38,7 @@ class Person extends Component {
     //  For avoid mutations
     const data = Object.assign({}, defaultData);
     this.props.trace('componentDidMount: ' + JSON.stringify(data));
-    console.log(' API ', data);
+    // console.log(' API ', data);
     if (data) {
       this.setState({ person: data });
     }
@@ -61,16 +61,19 @@ class Person extends Component {
   };
 
   componentDidUpdate(prevProps, prevstate, snapshot) {
-    const moneyImage = document.getElementById('money');
+    const moneyImage = document.querySelector('.MoneyImage');
+    console.log('person', this.props)
     if (moneyImage && snapshot.salaryDiference > 0) {
-      moneyImage.width = moneyImage.width + 10;
+      let imageWidth = moneyImage.offsetWidth;
+      imageWidth = imageWidth + 23;
+      moneyImage.style.width = `${imageWidth}px`;
     }
 
     // this.salaryDiference = snapshot.salaryDiference;
   }
 
   componentWillUnmount = () => {
-    this.props.trace('componentWillUnmount');
+    // this.props.trace('componentWillUnmount');
     this.props.onClickResetAge();
     this.setState(initPerson);
   }
@@ -89,7 +92,7 @@ class Person extends Component {
   // }
 
   render() {
-    console.log('RENDER', this.state.person);
+    // console.log('RENDER', this.state.person);
 
     return (
       <div className="Person">
@@ -103,7 +106,7 @@ class Person extends Component {
           <b>Work:</b> {this.state.person.work} <br />
           <b>Salari:</b> {this.state.person.salary} <br />
           <b>Salary diference:</b> {this.salaryDiference}
-          <Picture picture={moneyImage} alt="money" width={60} imgCss={'MoneyImage'} />
+          <Picture picture={moneyImage} alt="money" width={0} css={'MoneyImage'} />
         </div>
       </div>
     );

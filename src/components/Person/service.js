@@ -14,6 +14,7 @@ export const initPerson = {
         work: '',
         salary: 0,
         picture: '',
+        imageWidth: 0
     }
 }
 
