@@ -24,7 +24,7 @@ code {
 }
 
 .log {
-  margin: 1.5em;
+  margin: 1.35em 1.5em 3.35em;
   max-height: 585px;
 }
 
@@ -41,6 +41,16 @@ code {
 
 .entries {
   width: 415px
+}
+
+.commit-logo {
+  position: absolute;
+  right: 25px;
+  bottom: 10px;
+}
+
+.commit-logo img {
+  width: 110px;
 }
 
 /* font-family: 'Lekton', sans-serif;
