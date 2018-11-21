@@ -35,7 +35,7 @@ class Slide extends Component {
 
     static getDerivedStateFromProps = (nextProps, prevState) => {
         // Devuelve un objeto para actualizar el State o null
-        // Perfecto para comparar el nuevo State y el anterior
+        // Perfecto para comparar las nuevas props con el estado anterior
 
         // OJO con el uso que le das.. Evita llamadas a cargas de datos
         // Evitar side-effects 
