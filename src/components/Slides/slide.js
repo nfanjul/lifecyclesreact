@@ -33,6 +33,18 @@ class Slide extends Component {
         // Funciona muy parecido a componentDidMount()
     }
 
+    static getDerivedStateFromProps = (nextProps, prevState) => {
+        // Devuelve un objeto para actualizar el State o null
+        // Perfecto para comparar el nuevo State y el anterior
+
+        // OJO con el uso que le das.. Evita llamadas a cargas de datos
+        // Evitar side-effects 
+
+        // Mejor usar componentDidUpdate
+
+        // Se lanza SIEMPRE antes de cada render
+    }
+
     shouldComponentUpdate(nextProps, nextState) {
         // Se ejecuta antes de renderizar
         // Desde aqui podremos forzar o abortar el renderizado del componente. Por defecto return true;
@@ -42,6 +54,16 @@ class Slide extends Component {
         // Método puro
 
         // PUNTO CLAVE para mejorar el rendimiento
+    }
+
+    getSnapshotBeforeUpdate(prevProps, prevState) {
+        // Raramente se usa
+
+        // Permite recoger información del DOM antes de que se modifique
+
+        // Retorno una propiedad que recoje en el componentDidUpdate
+
+        // Ideal para interactuar con la pantalla, controlar scrolled, etc...
     }
 
     componentWillUnmount() {

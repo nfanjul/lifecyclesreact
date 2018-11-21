@@ -14,12 +14,6 @@ class Person extends Component {
   }
 
   static getDerivedStateFromProps = (nextProps, prevState) => {
-    // First mount
-    // if (props.person.eyeColor !== 'green') {
-    //   props.person.eyeColor = 'green';
-    //   state = props;
-    //   return state;
-    // }
     // Updates
     nextProps.trace('getDerivedStateFromProps next -->' + JSON.stringify(nextProps));
     nextProps.trace('getDerivedStateFromProps prev -->' + JSON.stringify(prevState));
@@ -28,8 +22,6 @@ class Person extends Component {
     if (updatedPerson) {
       return { person: updatedPerson };
     }
-    // prevState = nextProps;
-    // return prevState;
     return null;
     //Posible return null if not changes
   };
@@ -38,32 +30,23 @@ class Person extends Component {
     //  For avoid mutations
     const data = Object.assign({}, defaultData);
     this.props.trace('componentDidMount: ' + JSON.stringify(data));
-    // console.log(' API ', data);
     if (data) {
       this.setState({ person: data });
     }
   };
 
   getSnapshotBeforeUpdate = (prevProps, prevstate) => {
-    // Are we adding new items to the list?
-    // Capture the scroll position so we can adjust prevstate later.
-    // if (prevProps.list.length < this.props.list.length) {
-    //   const list = this.listRef.current;
-    //   return list.scrollHeight - list.scrollTop;
-    // }
-    // return null;
-    // if (prevstate.languages.length < this.props.languages.length) {
-    //   // TODO: Add prevstate
-    // }
     return {
       salaryDiference: this.state.person.salary - prevstate.person.salary
     };
   };
 
-  componentDidUpdate(prevProps, prevstate, snapshot) {
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    prevProps.trace('componentDidUpdate prevProps -->' + JSON.stringify(prevProps));
+    prevProps.trace('componentDidUpdate prevState -->' + JSON.stringify(prevState));
+    prevProps.trace('componentDidUpdate snapshot -->' + JSON.stringify(snapshot));
     const moneyImage = document.querySelector('.MoneyImage');
     let imageWidth = moneyImage.offsetWidth;
-    console.log('salaryDiference', snapshot.salaryDiference)
     if (moneyImage && snapshot.salaryDiference > 0) {
       imageWidth = imageWidth + 23;
       moneyImage.style.width = `${imageWidth}px`;
@@ -71,32 +54,15 @@ class Person extends Component {
     if (moneyImage && snapshot.salaryDiference < 0) {
       moneyImage.style.width = "0px";
     }
-
-    // this.salaryDiference = snapshot.salaryDiference;
   }
 
   componentWillUnmount = () => {
-    // this.props.trace('componentWillUnmount');
+    this.props.trace('componentWillUnmount');
     this.props.onClickResetAge();
     this.setState(initPerson);
   }
 
-  // renderLanguages = () =>
-  //   this.state.person.languages.map(lang => {
-  //     return <div key={lang}> {lang.join()} </div>;
-  //   });
-
-  // increaseAge = () => {
-  //   if (this.state.person.age < 100) {
-  //     this.setState({
-  //       person: { ...this.state.person, age: this.state.person.age + 10 }
-  //     });
-  //   }
-  // }
-
   render() {
-    // console.log('RENDER', this.state.person);
-
     return (
       <div className="Person">
         <Picture picture={this.state.person.picture} alt="person" css={'Picture'} />
