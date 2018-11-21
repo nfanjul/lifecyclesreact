@@ -42,7 +42,6 @@ class Person extends Component {
   };
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    
     prevProps.trace('componentDidUpdate prevProps -->' + JSON.stringify(prevProps));
     prevProps.trace('componentDidUpdate prevState -->' + JSON.stringify(prevState));
     prevProps.trace('componentDidUpdate snapshot -->' + JSON.stringify(snapshot));
