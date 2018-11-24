@@ -27,7 +27,7 @@ class Person extends Component {
   };
 
   componentDidMount = () => {
-    //  For avoid mutations
+    // SHOW CODE 2
     const data = Object.assign({}, defaultData);
     this.props.trace('componentDidMount: ' + JSON.stringify(data));
     if (data) {
@@ -36,28 +36,37 @@ class Person extends Component {
   };
 
   getSnapshotBeforeUpdate = (prevProps, prevstate) => {
+    // SHOW CODE 4
     return {
       salaryDiference: this.state.person.salary - prevstate.person.salary
     };
   };
 
   componentDidUpdate(prevProps, prevState, snapshot) {
+    // SHOW CODE 5
     prevProps.trace('componentDidUpdate prevProps -->' + JSON.stringify(prevProps));
     prevProps.trace('componentDidUpdate prevState -->' + JSON.stringify(prevState));
     prevProps.trace('componentDidUpdate snapshot -->' + JSON.stringify(snapshot));
-    const moneyImage = document.querySelector('.MoneyImage');
-    let imageWidth = moneyImage.offsetWidth;
-    if (moneyImage && snapshot.salaryDiference > 0) {
-      imageWidth = imageWidth + 23;
-      moneyImage.style.width = `${imageWidth}px`;
+    if(snapshot.salaryDiference !== 0)
+    {
+      this.props.trace('componentDidUpdate: DIFFERENCE');
     }
-    if (moneyImage && snapshot.salaryDiference < 0) {
-      moneyImage.style.width = "0px";
+    const moneyImage = document.querySelector('.MoneyImage');
+    if (moneyImage) {
+      let imageWidth = moneyImage.offsetWidth;
+      if (moneyImage && snapshot.salaryDiference > 0) {
+        imageWidth = imageWidth + 23;
+        moneyImage.style.width = `${imageWidth}px`;
+      }
+      if (moneyImage && snapshot.salaryDiference < 0) {
+        moneyImage.style.width = "0px";
+      }
     }
   }
 
   componentWillUnmount = () => {
-    this.props.trace('componentWillUnmount');
+    // SHOW CODE 6
+    this.props.trace('componentWillUnmount: KILL MARCELA');
     this.props.onClickResetAge();
     this.setState(initPerson);
   }
@@ -66,16 +75,18 @@ class Person extends Component {
     return (
       <div className="Person">
         <Picture picture={this.state.person.picture} alt="person" css={'Picture'} />
+        <button className='plus' onClick={this.props.onClickIncreaseAge}> + </button> <br />
+
         <div className="personInfo">
           <h2> {this.state.person.name} </h2>
           <b>Eye color:</b> {this.state.person.eyeColor} <br />
           <b>Hair color:</b> {this.state.person.hairColor} <br />
-          <b>Age:</b> {this.state.person.age}{' '} <br />
+          <b>Age:</b> {this.props.personAge}{' '} <br />
           <b>Languages:</b> {this.state.person.languages.join(', ')} <br />
           <b>Work:</b> {this.state.person.work} <br />
           <b>Salari:</b> {this.state.person.salary} <br />
-          <b>Salary diference:</b> {this.salaryDiference}
-          <Picture picture={moneyImage} alt="money" width={0} css={'MoneyImage'} />
+          <b>Salary diference:</b>
+          {this.state.person.salary > 0 ? <Picture picture={moneyImage} alt="money" width={0} css={'MoneyImage'} /> : null}
         </div>
       </div>
     );

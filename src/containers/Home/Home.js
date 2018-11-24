@@ -6,37 +6,29 @@ import World from '../../components/World/World';
 import './Home.css';
 
 class Home extends Component {
+  // SHOW CODE 1
   constructor(props) {
     super(props);
     this.state = {
       isHome: true,
       personAge: 0,
     }
-    props.trace('constructor --> props ' + JSON.stringify(props));
-    props.trace('constructor --> state ' + JSON.stringify(this.state));
   }
 
   onClickIsHome = () => this.setState({ isHome: !this.state.isHome });
 
+  // SHOW CODE 1.2
   onClickIncreaseAge = () => {
-    if (this.state.personAge < 30) {
+    if (this.state.personAge < 80){
       this.setState({ personAge: this.state.personAge + 10 });
-    } else if (this.state.personAge === 30) {
-      this.setState({ personAge: this.state.personAge + 20 });
-    } else if (this.state.personAge === 50) {
-      this.setState({ personAge: this.state.personAge + 30 });
     }
   };
 
   onClickResetAge = () => this.setState({ personAge: 0 });
 
-  renderPerson = () => 
-    <React.Fragment>
-      <Person personAge={this.state.personAge}  onClickResetAge={this.onClickResetAge}/>
-      <button className='plus' onClick={this.onClickIncreaseAge}> + </button> <br />
-    </React.Fragment>
+  renderPerson = () => <Person personAge={this.state.personAge} onClickIncreaseAge={this.onClickIncreaseAge}  onClickResetAge={this.onClickResetAge}/>
   
-
+  // SHOW CODE 1.1
   render() {
     return (
       <div className="Home">

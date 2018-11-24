@@ -6,9 +6,12 @@ import './Picture.css';
 class Picture extends Component {
 
   shouldComponentUpdate = (nextProps, nextState) => {
+    // SHOW CODE 3
     if(nextProps.picture !== this.props.picture) {
+      this.props.trace('shouldComponentUpdate: SI RENDER');
       return true;
     }
+    this.props.trace('shouldComponentUpdate: NO RENDER');
     return false
   };
 
