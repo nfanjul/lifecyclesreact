@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { traceLifecycle } from 'react-lifecycle-visualizer';
 import Person from '../../components/Person/Person';
 import World from '../../components/World/World';
+import HomeButton from '../../components/HomeButton/HomeButton';
 
 import './Home.css';
 
@@ -32,7 +33,7 @@ class Home extends Component {
   render() {
     return (
       <div className="Home">
-        <button className='home-button' onClick={this.onClickIsHome}> {this.state.isHome ? 'Enter god mode' : 'Kill this person'} </button>
+        <HomeButton onClickIsHome={this.onClickIsHome} isHome={this.state.isHome}/>
         {this.state.isHome ? <World /> : this.renderPerson() }
       </div>
     );
